@@ -21,8 +21,6 @@ function App() {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ location }&units=metric&appid=${ apiKey }`)
     .then((res)=>{
       setResponse(res.data)
-
-      if ()
     }).catch((err)=>{
       console.log("The error is : ",err);
       alert(err.response.data.message)
