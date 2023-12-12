@@ -1,7 +1,6 @@
 import { useState,useEffect } from 'react'
 import { Button,Search } from "./components/components"
 import axios from "axios"
-import { clouds,clear,drizzle,snow,mist,rain } from './components/index'
 import Bg from "./assets/background.jpg"
 
 
@@ -15,14 +14,17 @@ function App() {
     setLocation( e.target.value )
    }
 
- const handleClick = ()=> {
+const handleClick = ()=> {
   if ( location ){
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ location }&units=metric&appid=${ apiKey }`)
     .then((res)=>{
       setResponse(res.data)
-      let weatherIcon = response.weather[0].icon
-      setWeather(`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`)
-      console.log(res.data.weather.icon);
+      if (res.data.weather && res.data.weather.length > 0) {
+        let weatherIcon = res.data.weather[0].icon;
+        setWeather(`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`);
+      } else {
+        setWeather('../src/assets/no_data.png');
+      }
 
     }).catch((err)=>{
       console.log("The error is : ",err);
