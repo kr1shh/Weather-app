@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import { Button,Search } from "./components/components"
 import axios from "axios"
 import Bg from "./assets/background.jpg"
+import noData from "../src/assets/weather-app-img/no_data.png"
 
 
 function App() {
@@ -38,8 +39,7 @@ const handleClick = ()=> {
 
 
  useEffect(()=>{
-    const imageUrl = '../src/assets/no_data.png'
-    setWeather(imageUrl);
+    setWeather(noData);
  }, [])
 
 
