@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Button,Search } from "./components/components"
 import axios from "axios"
 import { clouds,clear,drizzle,snow,mist,rain } from './components/index'
@@ -6,7 +6,6 @@ import Bg from "./assets/background.jpg"
 
 
 function App() {
-  // const [count, setCount] = useState(0)
   const apiKey = 'cdc97c5e48b002b17247c9a0fd8e7167'
   const [ response,setResponse ] = useState(null)
   const [ location,setLocation ] = useState('')
@@ -21,6 +20,10 @@ function App() {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ location }&units=metric&appid=${ apiKey }`)
     .then((res)=>{
       setResponse(res.data)
+      let weatherIcon = response.weather[0].icon
+      setWeather(`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`)
+      console.log(res.data.weather.icon);
+
     }).catch((err)=>{
       console.log("The error is : ",err);
       alert(err.response.data.message)
@@ -32,9 +35,9 @@ function App() {
 
 
 
-//  useEffect(()=>{
-//   handleClick()
-//  }, [])
+ useEffect(()=>{
+  setWeather('../src/assets/no_data.png')
+ }, [])
 
 
   return (
@@ -47,8 +50,8 @@ function App() {
               <Search handleChange = { handleChange }/>
               <Button handleClick = { handleClick }/>
             </div>
-            <div className="bg-black w-1/2 h-36 overflow-hidden rounded-2xl">
-              <img src="#" alt="Weather Icon" />
+            <div className=" w-1/2 h-36 overflow-hidden rounded-2xl">
+              <img className='w-full h-full bg-cover' src={ weather } alt="Weather Icon" />
             </div>
             <div className="flex flex-col items-center gap-2">
               <h3 className="text-gray-800 font-montserrat font-bold text-3xl drop-shadow-xl">
