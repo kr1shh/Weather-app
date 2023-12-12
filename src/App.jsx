@@ -38,7 +38,7 @@ const handleClick = ()=> {
 
 
  useEffect(()=>{
-  setWeather('../src/assets/no_data.png')
+  setWeather('./src/assets/no_data.png')
  }, [])
 
 
