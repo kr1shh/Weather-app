@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react'
 import { Button,Search } from "./components/components"
 import axios from "axios"
 import Bg from "./assets/background.jpg"
-import noData from "../src/assets/weather-app-img/no_data.png"
+import noData from "/no_data.png"
 
 
 function App() {
@@ -24,7 +24,7 @@ const handleClick = ()=> {
         let weatherIcon = res.data.weather[0].icon;
         setWeather(`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`);
       } else {
-        setWeather('../src/assets/no_data.png');
+        setWeather(noData);
       }
 
     }).catch((err)=>{
