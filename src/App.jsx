@@ -15,6 +15,13 @@ function App() {
     setLocation( e.target.value )
    }
 
+   const handleKeyDown = (e) => {
+    if(e.key === 'Enter'){
+      e.preventDefault()
+      handleClick()
+    }
+   }
+
 const handleClick = ()=> {
   if ( location ){
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ location }&units=metric&appid=${ apiKey }`)
@@ -50,7 +57,9 @@ const handleClick = ()=> {
         <div className="w-80 h-80 rounded-2xl  border border-solid border-black overflow-hidden">
           <div className="w-full h-full flex items-center bg-[rgba(255,255,255,.1)]  backdrop-blur-[6px] pt-4 gap-4 flex-col">
             <div className="w-full flex justify-center gap-2">
-              <Search handleChange = { handleChange }/>
+              <Search 
+              handleChange = { handleChange }
+              handleKeyDown={ handleKeyDown }/>
               <Button handleClick = { handleClick }/>
             </div>
             <div className=" w-1/2 h-36 overflow-hidden rounded-2xl">

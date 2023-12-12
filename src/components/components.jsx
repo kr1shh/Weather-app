@@ -1,8 +1,13 @@
 
-export const Search = ({ handleChange }) => {
+export const Search = ({ handleChange,handleKeyDown }) => {
   return(
     <div>
-      <input onChange={ handleChange } type="text" placeholder="Search" required className="font-montserrat text-md py-1 px-2 rounded-full focus:outline-none"/>
+      <input
+      onChange={ handleChange } 
+      onKeyDown={ handleKeyDown }
+      type="text" 
+      placeholder="Search" required 
+      className="font-montserrat text-md py-1 px-2 rounded-full focus:outline-none"/>
     </div>
   )
 }
