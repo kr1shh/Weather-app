@@ -53,13 +53,13 @@ function App() {
 
   return (
     <>
-      <main className="relative w-full h-screen bg-gradient-to-t from-blue-800 to-fuchsia-400 flex items-center justify-center">
+      <main className="relative w-full h-screen bg-black flex items-center justify-center">
         <img
-          className="absolute z-[0] w-full h-full object-cover"
+          className="absolute z-[0] w-full h-full object-cover opacity-60"
           src={Bg}
         ></img>
-        <div className="w-80 h-auto rounded-2xl  border border-solid border-black overflow-hidden">
-          <div className="w-full h-full flex items-center bg-[rgba(255,255,255,.1)]  backdrop-blur-[6px] pt-4 gap-4 flex-col">
+        <div className="w-80 h-auto rounded-2xl overflow-hidden ">
+          <div className="w-full h-full flex items-center bg-[rgba(255,255,255,.1)]  backdrop-blur-[6px] pt-4 gap-4 flex-col ">
             <div className="w-full flex justify-center gap-2">
               <Search
                 handleChange={handleChange}
@@ -74,14 +74,14 @@ function App() {
                 alt="Weather Icon"
               />
             </div>
-            <p className="font-montserrat">
+            <p className="font-montserrat text-white">
               { response ? response.weather[0].description : ''}
             </p>
             <div className="flex flex-col items-center gap-2 mb-4">
-              <h3 className="text-gray-800 font-montserrat font-bold text-3xl drop-shadow-xl">
+              <h3 className="text-white font-montserrat font-bold text-3xl drop-shadow-xl">
                 {response ? `${Math.round(response.main.temp)} \u00B0C` : ""}
               </h3>
-              <h2 className="text-gray-800 font-montserrat font-bold text-lg drop-shadow-xl">
+              <h2 className="text-white font-montserrat font-bold text-lg drop-shadow-xl">
                 {response ? response.name : "Search for a city"}
               </h2>
             </div>
